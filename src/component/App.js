@@ -70,8 +70,8 @@ export default class App extends React.Component {
             <Button name={darkMode ? '☀️' : '🌙'} clickHandler={this.toggleDarkMode} />
             <Button name={this.state.showHistory ? '📋' : '📜'} clickHandler={this.toggleHistory} />
           </div>
+          <ButtonPanel clickHandler={this.handleClick} />
         </div>
-        <ButtonPanel clickHandler={this.handleClick} />
       </div>
     );
   }
