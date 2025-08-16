@@ -28,9 +28,10 @@ export default class App extends React.Component {
     const newState = calculate(this.state, buttonName);
     this.setState(prevState => ({
       ...newState,
-      history: [...prevState.history, 
-                `${this.formatHistoryEntry(prevState, buttonName, newState)}`]
-                .slice(-10) // Keep only last 10 entries
+      history: [
+        ...prevState.history, 
+        this.formatHistoryEntry(prevState, buttonName, newState)
+      ].slice(-10).filter(entry => entry.trim() !== "") // Keep only last 10 non-empty entries
     }));
   };
 
@@ -38,13 +39,13 @@ export default class App extends React.Component {
     if (buttonName === '=') {
       return `${prevState.total || ''}${prevState.operation || ''}${prevState.next || ''}=${newState.total || ''}`;
     } else if (['+', '-', 'x', '÷'].includes(buttonName)) {
-      return `${prevState.total || ''} ${buttonName} ${prevState.next || ''}`;
+      return `${prevState.total || ''}${buttonName}${prevState.next || ''}`;
     } else if (buttonName === 'AC') {
       return 'AC';
     } else if (buttonName === '+/-') {
-      return `± ${prevState.next || prevState.total || ''}`;
+      return `±${prevState.next || prevState.total || ''}`;
     } else if (buttonName === '%') {
-      return `% ${prevState.next || prevState.total || ''}`;
+      return `${prevState.next || prevState.total || ''}%`;
     }
     return '';
   };
