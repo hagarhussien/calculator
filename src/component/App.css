@@ -3,4 +3,25 @@
   flex-direction: column;
   flex-wrap: wrap;
   height: 100%;
+  background-color: white;
+  color: black;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.component-app.dark-mode {
+  background-color: #1a1a1a;
+  color: white;
+}
+
+.component-app.dark-mode .component-button button {
+  background-color: #333;
+  color: white;
+}
+
+.component-app.dark-mode .component-button.orange button {
+  background-color: #ff9500;
+}
+
+.component-app.dark-mode .component-display {
+  background-color: #000;
 }
