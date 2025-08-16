@@ -30,8 +30,10 @@ export default class App extends React.Component {
     const { darkMode } = this.state;
     return (
       <div className={`component-app ${darkMode ? 'dark-mode' : ''}`}>
-        <Display value={this.state.next || this.state.total || "0"} />
-        <Button name={darkMode ? '☀️' : '🌙'} clickHandler={this.toggleDarkMode} />
+        <div style={{ display: 'flex', alignItems: 'center', gap: '4px', marginBottom: '4px' }}>
+          <Display value={this.state.next || this.state.total || "0"} />
+          <Button name={darkMode ? '☀️' : '🌙'} clickHandler={this.toggleDarkMode} />
+        </div>
         <ButtonPanel clickHandler={this.handleClick} />
       </div>
     );
