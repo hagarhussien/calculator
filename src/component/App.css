@@ -22,10 +22,20 @@
   background-color: #3d3d3d;
 }
 
+.component-button.divide button { background-color: #ff4444; }
+.component-button.multiply button { background-color: #44a5ff; }
+.component-button.subtract button { background-color: #66bb6a; }
+.component-button.add button { background-color: #ff9500; }
+
 .component-app.dark-mode .component-button.orange button {
   background-color: #ff9500;
   color: #fff;
 }
+
+.component-app.dark-mode .component-button.divide button { background-color: #cc0000; }
+.component-app.dark-mode .component-button.multiply button { background-color: #0077cc; }
+.component-app.dark-mode .component-button.subtract button { background-color: #2e7d32; }
+.component-app.dark-mode .component-button.add button { background-color: #e68a00; }
 
 .component-app.dark-mode .component-button.orange button:hover {
   background-color: #ffaa33;
