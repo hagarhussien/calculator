@@ -14,12 +14,25 @@
 }
 
 .component-app.dark-mode .component-button button {
-  background-color: #333;
-  color: white;
+  background-color: #2d2d2d;
+  color: #ffffff;
+}
+
+.component-app.dark-mode .component-button button:hover {
+  background-color: #3d3d3d;
 }
 
 .component-app.dark-mode .component-button.orange button {
   background-color: #ff9500;
+  color: #fff;
+}
+
+.component-app.dark-mode .component-button.orange button:hover {
+  background-color: #ffaa33;
+}
+
+.component-app.dark-mode .component-button.orange button:active {
+  background-color: #e68a00;
 }
 
 .component-app.dark-mode .component-display {
