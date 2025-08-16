@@ -48,11 +48,11 @@ export default function calculate(obj, buttonName) {
 
   if (buttonName === "%") {
     if (obj.operation && obj.next) {
-      const result = operate(obj.total, obj.next, obj.operation);
+      // Calculate percentage of the total for the operation
+      const percentage = Big(obj.next).div(100);
+      const result = operate(obj.total, percentage.toString(), obj.operation);
       return {
-        total: Big(result)
-          .div(Big("100"))
-          .toString(),
+        total: result,
         next: null,
         operation: null,
       };
