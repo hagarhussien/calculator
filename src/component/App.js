@@ -39,8 +39,13 @@ export default class App extends React.Component {
           overflow: 'hidden'
         }}>
           <Display value={this.state.next || this.state.total || "0"} />
-          <div style={{ flexShrink: 0 }}>
-            <Button name={darkMode ? '☀️' : '🌙'} clickHandler={this.toggleDarkMode} />
+          <div style={{ flexShrink: 0, width: '4rem' }}>
+            <Button 
+              name={darkMode ? 'Light' : 'Dark'} 
+              clickHandler={this.toggleDarkMode} 
+              orange
+              darkModeToggle
+            />
           </div>
         </div>
         <ButtonPanel clickHandler={this.handleClick} />

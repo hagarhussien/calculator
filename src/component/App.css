@@ -38,3 +38,9 @@
 .component-app.dark-mode .component-display {
   background-color: #000;
 }
+
+.component-button.dark-mode-toggle button {
+  width: 4rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
