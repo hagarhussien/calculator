@@ -13,6 +13,7 @@ export default class App extends React.Component {
     operation: null,
     darkMode: localStorage.getItem('calculatorDarkMode') === 'true',
     history: [],
+    showHistory: true,
   };
 
   toggleDarkMode = () => {
@@ -35,9 +36,13 @@ export default class App extends React.Component {
 
   formatHistoryEntry = (prevState, buttonName, newState) => {
     if (buttonName === '=') {
-      return `${prevState.total || ''} ${prevState.operation || ''} ${prevState.next || ''} = ${newState.total || ''}`;
+      return `${prevState.total || ''}${prevState.operation || ''}${prevState.next || ''}=${newState.total || ''}`;
     }
-    return `${prevState.total || ''} ${prevState.operation || ''} ${prevState.next || ''} ${buttonName}`;
+    return '';
+  };
+
+  toggleHistory = () => {
+    this.setState(prevState => ({ showHistory: !prevState.showHistory }));
   };
 
   render() {
@@ -53,14 +58,17 @@ export default class App extends React.Component {
           flexDirection: 'column',
           alignItems: 'flex-end',
         }}>
-          <div className="calculation-history">
-            {this.state.history.map((entry, i) => (
-              <div key={i} className="history-entry">{entry}</div>
-            ))}
-          </div>
+          {this.state.showHistory && (
+            <div className="calculation-history">
+              {this.state.history.map((entry, i) => (
+                <div key={i} className="history-entry">{entry}</div>
+              ))}
+            </div>
+          )}
           <Display value={this.state.next || this.state.total || "0"} />
-          <div style={{ flexShrink: 0 }}>
+          <div style={{ flexShrink: 0, display: 'flex', gap: '4px' }}>
             <Button name={darkMode ? '☀️' : '🌙'} clickHandler={this.toggleDarkMode} />
+            <Button name={this.state.showHistory ? '📋' : '📜'} clickHandler={this.toggleHistory} />
           </div>
         </div>
         <ButtonPanel clickHandler={this.handleClick} />
