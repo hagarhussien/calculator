@@ -12,7 +12,7 @@ export default class App extends React.Component {
     next: null,
     operation: null,
     darkMode: localStorage.getItem('calculatorDarkMode') === 'true',
-    history: [],
+    history: JSON.parse(localStorage.getItem('calculatorHistory')) || [],
     showHistory: true,
   };
 
@@ -34,6 +34,12 @@ export default class App extends React.Component {
       ].slice(-10).filter(entry => entry.trim() !== "") // Keep only last 10 non-empty entries
     }));
   };
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.history !== this.state.history) {
+      localStorage.setItem('calculatorHistory', JSON.stringify(this.state.history));
+    }
+  }
 
   formatHistoryEntry = (prevState, buttonName, newState) => {
     if (buttonName === '=') {
