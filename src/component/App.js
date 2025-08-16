@@ -12,6 +12,7 @@ export default class App extends React.Component {
     next: null,
     operation: null,
     darkMode: localStorage.getItem('calculatorDarkMode') === 'true',
+    history: [],
   };
 
   toggleDarkMode = () => {
@@ -23,7 +24,13 @@ export default class App extends React.Component {
   };
 
   handleClick = buttonName => {
-    this.setState(calculate(this.state, buttonName));
+    const newState = calculate(this.state, buttonName);
+    this.setState(prevState => ({
+      ...newState,
+      history: [...prevState.history, 
+                `${prevState.total || ''} ${prevState.operation || ''} ${prevState.next || ''} ${buttonName}`]
+                .slice(-10) // Keep only last 10 entries
+    }));
   };
 
   render() {
@@ -36,8 +43,14 @@ export default class App extends React.Component {
           gap: '4px', 
           marginBottom: '4px',
           width: '100%',
-          
+          flexDirection: 'column',
+          alignItems: 'flex-end',
         }}>
+          <div className="calculation-history">
+            {this.state.history.map((entry, i) => (
+              <div key={i} className="history-entry">{entry}</div>
+            ))}
+          </div>
           <Display value={this.state.next || this.state.total || "0"} />
           <div style={{ flexShrink: 0 }}>
             <Button name={darkMode ? '☀️' : '🌙'} clickHandler={this.toggleDarkMode} />

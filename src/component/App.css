@@ -37,6 +37,31 @@
 .component-app.dark-mode .component-button.subtract button { background-color: #2e7d32; }
 .component-app.dark-mode .component-button.add button { background-color: #c9c60a; }
 
+.calculation-history {
+  font-size: 0.6rem;
+  color: #666;
+  padding: 0 0.5rem;
+  width: 100%;
+  text-align: right;
+  min-height: 1.2rem;
+}
+
+.history-entry {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  opacity: 0.8;
+  line-height: 1.2;
+}
+
+.component-app.dark-mode .calculation-history {
+  color: #888;
+}
+
+.component-app.dark-mode .history-entry {
+  color: #ccc;
+}
+
 .component-app.dark-mode .component-button.orange button:hover {
   background-color: #ffaa33;
 }
