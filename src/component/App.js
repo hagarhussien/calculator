@@ -50,27 +50,31 @@ export default class App extends React.Component {
     return (
       <div className={`component-app ${darkMode ? 'dark-mode' : ''}`}>
         <div style={{ 
-          display: 'inline-flex', 
-          alignItems: 'center', 
-          gap: '4px', 
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'stretch',
+          gap: '4px',
           marginBottom: '4px',
           width: '100%',
-          flexDirection: 'column',
-          alignItems: 'flex-end',
+          flex: 1
         }}>
-          {this.state.showHistory && (
-            <div className="calculation-history">
+          <div style={{ flexShrink: 0, display: 'flex', gap: '4px', justifyContent: 'flex-end' }}>
+            <Button name={darkMode ? '☀️' : '🌙'} clickHandler={this.toggleDarkMode} />
+            <Button name={this.state.showHistory ? '🧮' : '📜'} clickHandler={this.toggleHistory} />
+          </div>
+          
+          {this.state.showHistory ? (
+            <div className="calculation-history" style={{ flex: 1 }}>
               {this.state.history.map((entry, i) => (
                 <div key={i} className="history-entry">{entry}</div>
               ))}
             </div>
+          ) : (
+            <>
+              <Display value={this.state.next || this.state.total || "0"} />
+              <ButtonPanel clickHandler={this.handleClick} />
+            </>
           )}
-          <Display value={this.state.next || this.state.total || "0"} />
-          <div style={{ flexShrink: 0, display: 'flex', gap: '4px' }}>
-            <Button name={darkMode ? '☀️' : '🌙'} clickHandler={this.toggleDarkMode} />
-            <Button name={this.state.showHistory ? '📋' : '📜'} clickHandler={this.toggleHistory} />
-          </div>
-          <ButtonPanel clickHandler={this.handleClick} />
         </div>
       </div>
     );
