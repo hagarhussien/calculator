@@ -37,6 +37,14 @@ export default class App extends React.Component {
   formatHistoryEntry = (prevState, buttonName, newState) => {
     if (buttonName === '=') {
       return `${prevState.total || ''}${prevState.operation || ''}${prevState.next || ''}=${newState.total || ''}`;
+    } else if (['+', '-', 'x', '÷'].includes(buttonName)) {
+      return `${prevState.total || ''} ${buttonName} ${prevState.next || ''}`;
+    } else if (buttonName === 'AC') {
+      return 'AC';
+    } else if (buttonName === '+/-') {
+      return `± ${prevState.next || prevState.total || ''}`;
+    } else if (buttonName === '%') {
+      return `% ${prevState.next || prevState.total || ''}`;
     }
     return '';
   };
