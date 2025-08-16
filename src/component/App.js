@@ -31,21 +31,16 @@ export default class App extends React.Component {
     return (
       <div className={`component-app ${darkMode ? 'dark-mode' : ''}`}>
         <div style={{ 
-          display: 'flex', 
+          display: 'inline-flex', 
           alignItems: 'center', 
           gap: '4px', 
           marginBottom: '4px',
           width: '100%',
-          overflow: 'hidden'
+          
         }}>
           <Display value={this.state.next || this.state.total || "0"} />
-          <div style={{ flexShrink: 0, width: '4rem' }}>
-            <Button 
-              name={darkMode ? 'Light' : 'Dark'} 
-              clickHandler={this.toggleDarkMode} 
-              orange
-              darkModeToggle
-            />
+          <div style={{ flexShrink: 0 }}>
+            <Button name={darkMode ? '☀️' : '🌙'} clickHandler={this.toggleDarkMode} />
           </div>
         </div>
         <ButtonPanel clickHandler={this.handleClick} />
