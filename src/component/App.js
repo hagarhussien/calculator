@@ -28,13 +28,20 @@ export default class App extends React.Component {
     this.setState(prevState => ({
       ...newState,
       history: [...prevState.history, 
-                `${prevState.total || ''} ${prevState.operation || ''} ${prevState.next || ''} ${buttonName}`]
+                `${this.formatHistoryEntry(prevState, buttonName, newState)}`]
                 .slice(-10) // Keep only last 10 entries
     }));
   };
 
+  formatHistoryEntry = (prevState, buttonName, newState) => {
+    if (buttonName === '=') {
+      return `${prevState.total || ''} ${prevState.operation || ''} ${prevState.next || ''} = ${newState.total || ''}`;
+    }
+    return `${prevState.total || ''} ${prevState.operation || ''} ${prevState.next || ''} ${buttonName}`;
+  };
+
   render() {
-    const { darkMode } = this.state;
+    const { darkMode, history } = this.state;
     return (
       <div className={`component-app ${darkMode ? 'dark-mode' : ''}`}>
         <div style={{ 
